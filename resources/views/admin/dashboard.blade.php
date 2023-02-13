@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-5 col-md-4">
                                 <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-globe text-warning"></i>
+                                    <i class="fa fa-shopping-cart text-warning"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-5 col-md-4">
                                 <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-vector text-danger"></i>
+                                    <i class="fa fa-undo text-danger"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-5 col-md-4">
                                 <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                    <i class="nc-icon nc-delivery-fast text-primary"></i>
                                 </div>
                             </div>
                             <div class="col-7 col-md-8">
@@ -115,7 +115,7 @@
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header ">
-                        <h5 class="card-title">Users Behavior</h5>
+                        <h5 class="card-title">Sales Statistics</h5>
                         <p class="card-category">24 Hours performance</p>
                     </div>
                     <div class="card-body ">
@@ -130,12 +130,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-4">
                 <div class="card ">
                     <div class="card-header ">
-                        <h5 class="card-title">Email Statistics</h5>
-                        <p class="card-category">Last Campaign Performance</p>
+                        <h5 class="card-title">Sales Statistics</h5>
+                        <p class="card-category">Last Sales Performance</p>
                     </div>
                     <div class="card-body ">
                         <canvas id="chartEmail"></canvas>
@@ -149,7 +149,7 @@
                         </div>
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar"></i> Number of emails sent
+                            <i class="fa fa-calendar"></i> Number of Sales
                         </div>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
