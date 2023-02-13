@@ -44,7 +44,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Sales</p>
-                                    <p class="card-title">Php 1,345
+                                    <p class="card-title">P 1,345
                                         <p>
                                 </div>
                             </div>

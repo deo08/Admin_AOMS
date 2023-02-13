@@ -15,41 +15,7 @@
             </div>
             <form action="#" method="POST" id="add_employee_form" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-body p-4 bg-light">
-                <div class="my-2">
-                    <label for="name">First Name</label>
-                    <input type="text" name="f_name" class="form-control" placeholder="First Name" required>
-                </div>
-                <div class="my-2">
-                    <label for="name">Last Name</label>
-                    <input type="text" name="l_name" class="form-control" placeholder="Last Name" required>
-                </div>
 
-                <div class="my-2">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="email">Email Address</label>
-                    <input type="text" name="email" class="form-control" placeholder="Email Address" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="password">Password</label>
-                    <input name="password" type="password" class="form-control" placeholder="Password" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="image">Image</label>
-                    <input type="file" name="image" class="form-control" required>
-                </div>
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="add_employee_btn" class="btn btn-primary">Add orders</button>
-                </div>
             </form>
             </div>
         </div>
@@ -67,42 +33,7 @@
             </div>
             <form action="#" method="POST" id="edit_employee_form" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="emp_id" id="emp_id">
-                <input type="hidden" name="emp_avatar" id="emp_avatar">
-                <div class="modal-body p-4 bg-light">
-                <div class="my-2">
-                    <label for="name">First Name</label>
-                    <input type="text" name="f_name" id="f_name" class="form-control" placeholder="First Name" required>
-                </div>
-                <div class="my-2">
-                    <label for="name">Last Name</label>
-                    <input type="text" name="l_name" id="l_name" class="form-control" placeholder="Last Name" required>
-                </div>
 
-                <div class="my-2">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="email">Email Address</label>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="password">Password</label>
-                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
-                </div>
-
-                <div class="my-2">
-                    <label for="image">Image</label>
-                    <input type="file" name="image" class="form-control">
-                </div>
-                <div class="mt-2" id="avatar">
-
-                </div>
-
-                </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" id="edit_employee_btn" class="btn btn-success">Update orders</button>
@@ -205,11 +136,9 @@
             _token: '{{ csrf_token() }}'
           },
           success: function(response) {
-            $("#f_name").val(response.f_name);
-            $("#l_name").val(response.l_name);
-            $("#phone").val(response.phone);
-            $("#email").val(response.email);
-            $("#password").val(response.password);
+            $("#order_amount").val(response.order_amount);
+            $("#payment_status").val(response.payment_status);
+            $("#payment_method").val(response.payment_method);
 
             $("#avatar").html(
                 `<img src="/storage/images/${response.image}" width="100" class="img-fluid img-thumbnail">`);
@@ -289,41 +218,6 @@
           }
         })
       });
-
-    // Update Status ajax request
-    $(document).on('click', '.toggle-class', function(e) {
-        e.preventDefault();
-        var status =  $(this).prop('checked') ? 1 : 0;
-        var id = $(this).data('id');
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, Changed it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: '{{ route('orders-status') }}',
-              data: {
-                status: status,
-                id: id
-              },
-              success: function(response) {
-                console.log(response);
-                Swal.fire(
-                  'Success!',
-                  'Status Changed Successfully!',
-                  'Success'
-                )
-                fetchAllEmployees();
-              }
-            });
-          }
-        })
-    });
 
       // fetch all Category ajax request
       fetchAllEmployees();

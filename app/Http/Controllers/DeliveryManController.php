@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\DeliveryMan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DeliveryManController extends Controller
 {
@@ -163,7 +164,7 @@ class DeliveryManController extends Controller
 
 		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
          'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
+         'password' => Hash::make($request['password']), 'image' => $fileName];
 		DeliveryMan::create($empData);
 		return response()->json([
 			'status' => 200,
@@ -194,7 +195,7 @@ class DeliveryManController extends Controller
 
 		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
          'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
+         'password' => Hash::make($request['password']), 'image' => $fileName];
 		$emp->update($empData);
 		return response()->json([
 			'status' => 200,

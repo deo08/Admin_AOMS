@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Order;
+use App\Models\Orders;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class OrdersController extends Controller
 
 	// handle fetch all Inventory ajax request
 	public function fetchAll() {
-		$emps = Order::all();
+		$emps = Orders::all();
 		$output = '';
         $counter = 1;
 		if ($emps->count() > 0) {
@@ -118,9 +118,12 @@ class OrdersController extends Controller
             <thead>
               <tr>
                 <th>#</th>
-                <th>Image</th>
-                <th>Order Name</th>
-                <th>Status</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Payment Status</th>
+                <th>Ordered Amount</th>
+                <th>Order Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -128,17 +131,12 @@ class OrdersController extends Controller
                 foreach ($emps as $emp) {
                     $output .= '<tr>
                         <td>' .  $counter . '</td>
-                        <td><img src="'. asset('storage/images/' . $emp->image) .'" width="50" class="img-thumbnail rounded-circle"></td>
-                        <td>' . $emp->f_name. ' ' .$emp->l_name . '</td>
-                        <td>
-                            <label class="switch">
-                                <input type="checkbox" class="toggle-class" data-id="'. $emp->id .'"  ' . ($emp->status ? 'checked' : '') . '>
-                                <div class="slider round">
-                                    <span class="on">Active</span>
-                                    <span class="off">Disable</span>
-                                </div>
-                            </label>
-                        </td>
+                        <td>'. $emp->id .'</td>
+                        <td>' . $emp->created_at. '</td>
+                        <td>' . $emp->user_id. ' '. $emp->user_id. '</td>
+                        <td>' . $emp->payment_status. '</td>
+                        <td>' . $emp->order_amount. '</td>
+                        <td>' . $emp->payment_method. '</td>
                         <td>
                             <a href="#" id="' . $emp->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">
                                 <i class="bi-pencil-square h4"></i>
@@ -156,67 +154,67 @@ class OrdersController extends Controller
 	}
 
 	// handle insert a new Inventory ajax request
-	public function store(Request $request) {
-		$file = $request->file('image');
-		$fileName = time() . '.' . $file->getClientOriginalExtension();
-		$file->storeAs('public/images', $fileName);
+	// public function store(Request $request) {
+	// 	$file = $request->file('image');
+	// 	$fileName = time() . '.' . $file->getClientOriginalExtension();
+	// 	$file->storeAs('public/images', $fileName);
 
-		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
-         'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
-		Order::create($empData);
-		return response()->json([
-			'status' => 200,
-		]);
-	}
+	// 	$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
+    //      'phone' => $request->phone, 'email' => $request->email,
+    //      'password' => $request->password, 'image' => $fileName];
+	// 	Orders::create($empData);
+	// 	return response()->json([
+	// 		'status' => 200,
+	// 	]);
+	// }
 
 	// handle edit an Inventory ajax request
 	public function edit(Request $request) {
 		$id = $request->id;
-		$emp = Order::find($id);
+		$emp = Orders::find($id);
 		return response()->json($emp);
 	}
 
 	// handle update an Inventory ajax request
-	public function update(Request $request) {
-		$fileName = '';
-		$emp = Order::find($request->emp_id);
-		if ($request->hasFile('image')) {
-			$file = $request->file('image');
-			$fileName = time() . '.' . $file->getClientOriginalExtension();
-			$file->storeAs('public/images', $fileName);
-			if ($emp->avatar) {
-				Storage::delete('public/images/' . $emp->image);
-			}
-		} else {
-			$fileName = $request->emp_avatar;
-		}
+	// public function update(Request $request) {
+	// 	$fileName = '';
+	// 	$emp = Orders::find($request->emp_id);
+	// 	if ($request->hasFile('image')) {
+	// 		$file = $request->file('image');
+	// 		$fileName = time() . '.' . $file->getClientOriginalExtension();
+	// 		$file->storeAs('public/images', $fileName);
+	// 		if ($emp->avatar) {
+	// 			Storage::delete('public/images/' . $emp->image);
+	// 		}
+	// 	} else {
+	// 		$fileName = $request->emp_avatar;
+	// 	}
 
-		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
-         'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
-		$emp->update($empData);
-		return response()->json([
-			'status' => 200,
-		]);
-	}
+	// 	$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
+    //      'phone' => $request->phone, 'email' => $request->email,
+    //      'password' => $request->password, 'image' => $fileName];
+	// 	$emp->update($empData);
+	// 	return response()->json([
+	// 		'status' => 200,
+	// 	]);
+	// }
 
 	// handle delete an Inventory ajax request
-	public function delete(Request $request) {
-		$id = $request->id;
-		$emp = Order::find($id);
-		if (Storage::delete('public/images/' . $emp->image)) {
-			Order::destroy($id);
-		}
-	}
+	// public function delete(Request $request) {
+	// 	$id = $request->id;
+	// 	$emp = Orders::find($id);
+	// 	if (Storage::delete('public/images/' . $emp->image)) {
+	// 		Orders::destroy($id);
+	// 	}
+	// }
 
-    public function status(Request $request) {
-        $emps = Order::find($request->id);
-        $emps->status = $request->status;
-        $emps->save();
+    // public function status(Request $request) {
+    //     $emps = Orders::find($request->id);
+    //     $emps->status = $request->status;
+    //     $emps->save();
 
-		// return response()->json([
-		// 	'status' => 200,
-		// ]);
-    }
+	// 	// return response()->json([
+	// 	// 	'status' => 200,
+	// 	// ]);
+    // }
 }

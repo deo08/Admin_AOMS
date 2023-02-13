@@ -14,7 +14,7 @@
 
             {{-- Dashboard --}}
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('dashboard', 'dashboard') }}">
+                <a href="{{ route('dashboard') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>

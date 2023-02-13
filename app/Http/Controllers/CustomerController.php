@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -165,7 +165,7 @@ class CustomerController extends Controller
 
 		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
          'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
+         'password' => Hash::make($request['password']), 'image' => $fileName];
 		Customer::create($empData);
 		return response()->json([
 			'status' => 200,
@@ -196,7 +196,7 @@ class CustomerController extends Controller
 
 		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
          'phone' => $request->phone, 'email' => $request->email,
-         'password' => $request->password, 'image' => $fileName];
+         'password' => Hash::make($request['password']), 'image' => $fileName];
 		$emp->update($empData);
 		return response()->json([
 			'status' => 200,
