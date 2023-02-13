@@ -59,9 +59,74 @@
             {{-- Customer --}}
             <li class="{{ $elementActive == 'customer' ? 'active' : '' }}">
                 <a href="{{ route('customer-list', 'customer') }}">
-                    <i class="nc-icon nc-single-02"></i>
+                    <i class="fa fa-users"></i>
                     <p>{{ __('Customer List') }}</p>
                 </a>
+            </li>
+
+            {{-- Deliveryman --}}
+            <li class="{{ $elementActive == 'deliveryman' ? 'active' : '' }}">
+                <a href="{{ route('deliveryman-list', 'deliveryman') }}">
+                    <i class="nc-icon nc-single-02"></i>
+                    <p>{{ __('DeliveryMan List') }}</p>
+                </a>
+            </li>
+
+            {{-- Manage Orders --}}
+            <li class="{{ $elementActive == 'user' || $elementActive == 'orders' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#orders">
+                    {{-- <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i> --}}
+                    <p>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            {{ __('Orders') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse show" id="orders">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'orders' ? 'active' : '' }}">
+                            <a href="{{ route('orders-list') }}">
+                                <span class="sidebar-mini-icon">OL</span>
+                                <span class="sidebar-normal">{{ __(' Orders List ') }}</span>
+                            </a>
+                        </li>
+                        {{-- <li class="{{ $elementActive == 'user' ? 'active' : '' }}">
+                            <a href="{{ route('dashboard', 'user') }}">
+                                <span class="sidebar-mini-icon">{{ __('U') }}</span>
+                                <span class="sidebar-normal">{{ __(' User Management ') }}</span>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </div>
+            </li>
+
+
+            {{-- Reports --}}
+            <li class="{{ $elementActive == 'user' || $elementActive == 'sales-report' ? 'active' : '' }}">
+                <a data-toggle="collapse" aria-expanded="true" href="#orders">
+                    {{-- <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i> --}}
+                    <p>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            {{ __('Reports') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse show" id="orders">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'sales-report' ? 'active' : '' }}">
+                            <a href="{{ route('sales-report-list') }}">
+                                <span class="sidebar-mini-icon">SR</span>
+                                <span class="sidebar-normal">{{ __(' Sales Report') }}</span>
+                            </a>
+                        </li>
+                        {{-- <li class="{{ $elementActive == 'user' ? 'active' : '' }}">
+                            <a href="{{ route('dashboard', 'user') }}">
+                                <span class="sidebar-mini-icon">{{ __('U') }}</span>
+                                <span class="sidebar-normal">{{ __(' User Management ') }}</span>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </div>
             </li>
 
             {{-- Settings --}}

@@ -62,4 +62,33 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/customer/edit', [App\Http\Controllers\CustomerController::class, 'edit'])->name('customer-edit');
     Route::post('/admin/customer/update', [App\Http\Controllers\CustomerController::class, 'update'])->name('customer-update');
     Route::get('/admin/customer/status', [App\Http\Controllers\CustomerController::class, 'status'])->name('customer-status');
+
+
+    //Deliveryman
+    Route::get('/admin/deliveryman', [App\Http\Controllers\DeliveryManController::class, 'index'])->name('deliveryman-list');
+    Route::post('/admin/deliveryman/store', [App\Http\Controllers\DeliveryManController::class, 'store'])->name('deliveryman-store');
+    Route::get('/admin/deliveryman/fetchall', [App\Http\Controllers\DeliveryManController::class, 'fetchAll'])->name('deliveryman-fetchAll');
+    Route::delete('/admin/deliveryman/delete', [App\Http\Controllers\DeliveryManController::class, 'delete'])->name('deliveryman-delete');
+    Route::get('/admin/deliveryman/edit', [App\Http\Controllers\DeliveryManController::class, 'edit'])->name('deliveryman-edit');
+    Route::post('/admin/deliveryman/update', [App\Http\Controllers\DeliveryManController::class, 'update'])->name('deliveryman-update');
+    Route::get('/admin/deliveryman/status', [App\Http\Controllers\DeliveryManController::class, 'status'])->name('deliveryman-status');
+
+    //Orders
+    Route::get('/admin/orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders-list');
+    Route::post('/admin/orders/store', [App\Http\Controllers\OrdersController::class, 'store'])->name('orders-store');
+    Route::get('/admin/orders/fetchall', [App\Http\Controllers\OrdersController::class, 'fetchAll'])->name('orders-fetchAll');
+    Route::delete('/admin/orders/delete', [App\Http\Controllers\OrdersController::class, 'delete'])->name('orders-delete');
+    Route::get('/admin/orders/edit', [App\Http\Controllers\OrdersController::class, 'edit'])->name('orders-edit');
+    Route::post('/admin/orders/update', [App\Http\Controllers\OrdersController::class, 'update'])->name('orders-update');
+    Route::get('/admin/orders/status', [App\Http\Controllers\OrdersController::class, 'status'])->name('orders-status');
+
+
+    //Report
+    Route::get('/admin/sales-report', [App\Http\Controllers\ReportController::class, 'index'])->name('sales-report-list');
+    // Route::post('/admin/sales-report/store', [App\Http\Controllers\ReportController::class, 'store'])->name('sales-report-store');
+    Route::get('/admin/sales-report/fetchall', [App\Http\Controllers\ReportController::class, 'fetchAll'])->name('sales-report-fetchAll');
+    // Route::delete('/admin/sales-report/delete', [App\Http\Controllers\ReportController::class, 'delete'])->name('sales-report-delete');
+    // Route::get('/admin/sales-report/edit', [App\Http\Controllers\ReportController::class, 'edit'])->name('sales-report-edit');
+    // Route::post('/admin/sales-report/update', [App\Http\Controllers\ReportController::class, 'update'])->name('sales-report-update');
+    // Route::get('/admin/sales-report/status', [App\Http\Controllers\ReportController::class, 'status'])->name('sales-report-status');
 });

@@ -10,7 +10,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="POST" id="add_employee_form" enctype="multipart/form-data">
@@ -24,6 +24,22 @@
                     <label for="name">Last Name</label>
                     <input type="text" name="l_name" class="form-control" placeholder="Last Name" required>
                 </div>
+
+                <div class="my-2">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" placeholder="Password" required>
+                </div>
+
                 <div class="my-2">
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control" required>
@@ -32,7 +48,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="add_employee_btn" class="btn btn-primary">Add Product</button>
+                <button type="submit" id="add_employee_btn" class="btn btn-primary">Add Customer</button>
                 </div>
             </form>
             </div>
@@ -46,7 +62,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Customer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="POST" id="edit_employee_form" enctype="multipart/form-data">
@@ -64,6 +80,21 @@
                 </div>
 
                 <div class="my-2">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                </div>
+
+                <div class="my-2">
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control">
                 </div>
@@ -74,7 +105,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="edit_employee_btn" class="btn btn-success">Update Product</button>
+                <button type="submit" id="edit_employee_btn" class="btn btn-success">Update Customer</button>
                 </div>
             </form>
             </div>
@@ -128,7 +159,7 @@
   <script>
     $(function() {
 
-      // add new Product ajax request
+      // add new Customer ajax request
       $("#add_employee_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
@@ -150,7 +181,7 @@
               )
               fetchAllEmployees();
             }
-            $("#add_employee_btn").text('Add Category');
+            $("#add_employee_btn").text('Add Customer');
             $("#add_employee_form")[0].reset();
             $("#addEmployeeModal").modal('hide');
 
@@ -162,7 +193,7 @@
         });
       });
 
-      // edit Product ajax request
+      // edit Customer ajax request
       $(document).on('click', '.editIcon', function(e) {
         e.preventDefault();
         let id = $(this).attr('id');
@@ -176,6 +207,9 @@
           success: function(response) {
             $("#f_name").val(response.f_name);
             $("#l_name").val(response.l_name);
+            $("#phone").val(response.phone);
+            $("#email").val(response.email);
+            $("#password").val(response.password);
 
             $("#avatar").html(
                 `<img src="/storage/images/${response.image}" width="100" class="img-fluid img-thumbnail">`);
@@ -186,7 +220,7 @@
         });
       });
 
-      // update Product ajax request
+      // update Customer ajax request
       $("#edit_employee_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);

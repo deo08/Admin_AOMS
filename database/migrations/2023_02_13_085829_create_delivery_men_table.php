@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('delivery_men', function (Blueprint $table) {
             $table->id();
-            $table->string('prod_name');
+            $table->string('f_name');
+            $table->string('l_name');
+            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('image');
-            $table->integer('stock');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('delivery_men');
     }
 };

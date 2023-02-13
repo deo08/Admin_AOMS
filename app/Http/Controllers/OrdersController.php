@@ -1,22 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class OrdersController extends Controller
 {
 	// set index page view
 	public function index() {
-		return view('admin.customer.index');
+		return view('admin.orders.index');
 	}
 
 	// handle fetch all Inventory ajax request
 	public function fetchAll() {
-		$emps = Customer::all();
+		$emps = Order::all();
 		$output = '';
         $counter = 1;
 		if ($emps->count() > 0) {
@@ -121,7 +119,7 @@ class CustomerController extends Controller
               <tr>
                 <th>#</th>
                 <th>Image</th>
-                <th>Customer Name</th>
+                <th>Order Name</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -166,7 +164,7 @@ class CustomerController extends Controller
 		$empData = ['f_name' => $request->f_name,'l_name' => $request->l_name,
          'phone' => $request->phone, 'email' => $request->email,
          'password' => $request->password, 'image' => $fileName];
-		Customer::create($empData);
+		Order::create($empData);
 		return response()->json([
 			'status' => 200,
 		]);
@@ -175,14 +173,14 @@ class CustomerController extends Controller
 	// handle edit an Inventory ajax request
 	public function edit(Request $request) {
 		$id = $request->id;
-		$emp = Customer::find($id);
+		$emp = Order::find($id);
 		return response()->json($emp);
 	}
 
 	// handle update an Inventory ajax request
 	public function update(Request $request) {
 		$fileName = '';
-		$emp = Customer::find($request->emp_id);
+		$emp = Order::find($request->emp_id);
 		if ($request->hasFile('image')) {
 			$file = $request->file('image');
 			$fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -206,14 +204,14 @@ class CustomerController extends Controller
 	// handle delete an Inventory ajax request
 	public function delete(Request $request) {
 		$id = $request->id;
-		$emp = Customer::find($id);
+		$emp = Order::find($id);
 		if (Storage::delete('public/images/' . $emp->image)) {
-			Customer::destroy($id);
+			Order::destroy($id);
 		}
 	}
 
     public function status(Request $request) {
-        $emps = Customer::find($request->id);
+        $emps = Order::find($request->id);
         $emps->status = $request->status;
         $emps->save();
 

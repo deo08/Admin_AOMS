@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'inventory'
+    'elementActive' => 'deliveryman'
 ])
 
 @section('content')
@@ -10,39 +10,45 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New DeliveryMan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="POST" id="add_employee_form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body p-4 bg-light">
                 <div class="my-2">
-                    <label for="name">Product Name</label>
-                    <input type="text" name="prod_name" class="form-control" placeholder="Product Name" required>
+                    <label for="name">First Name</label>
+                    <input type="text" name="f_name" class="form-control" placeholder="First Name" required>
                 </div>
+                <div class="my-2">
+                    <label for="name">Last Name</label>
+                    <input type="text" name="l_name" class="form-control" placeholder="Last Name" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" placeholder="Password" required>
+                </div>
+
                 <div class="my-2">
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control" required>
                 </div>
 
-                <div class="my-2">
-                    <label for="category">Category</label>
-                    <select class="form-control browser-default custom-select" name="category_id" required>
-                    <option value="" selected>Select Category</option>
-                        @foreach ($categories as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="my-2">
-                    <label for="stock">Product Stock</label>
-                    <input type="number" name="stock" min="0" max="100000000" class="form-control" placeholder="Ex: 10" required>
-                </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="add_employee_btn" class="btn btn-primary">Add Product</button>
+                <button type="submit" id="add_employee_btn" class="btn btn-primary">Add DeliveryMan</button>
                 </div>
             </form>
             </div>
@@ -56,7 +62,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit DeliveryMan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="POST" id="edit_employee_form" enctype="multipart/form-data">
@@ -65,9 +71,29 @@
                 <input type="hidden" name="emp_avatar" id="emp_avatar">
                 <div class="modal-body p-4 bg-light">
                 <div class="my-2">
-                    <label for="name">Product Name</label>
-                    <input type="text" name="prod_name" id="name" class="form-control" placeholder="Product Name" required>
+                    <label for="name">First Name</label>
+                    <input type="text" name="f_name" id="f_name" class="form-control" placeholder="First Name" required>
                 </div>
+                <div class="my-2">
+                    <label for="name">Last Name</label>
+                    <input type="text" name="l_name" id="l_name" class="form-control" placeholder="Last Name" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                </div>
+
+                <div class="my-2">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                </div>
+
                 <div class="my-2">
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control">
@@ -76,24 +102,10 @@
 
                 </div>
 
-                <div class="mt-2">
-                    <label for="category">Category</label>
-                    <select class="browser-default custom-select" name="category_id" id="category" required>
-                    <option id="category_id" selected></option>
-                        @foreach ($categories as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="my-2">
-                    <label for="stock">Product Stock</label>
-                    <input type="number" name="stock" id="stock" class="form-control" placeholder="Ex: 10" required>
-                </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="edit_employee_btn" class="btn btn-success">Update Product</button>
+                <button type="submit" id="edit_employee_btn" class="btn btn-success">Update DeliveryMan</button>
                 </div>
             </form>
             </div>
@@ -107,10 +119,10 @@
                 <div class="row my-5">
                     <div class="col-lg-12 ml-auto mr-auto">
                         <div class="card shadow">
-                        <div class="card-header bg-primary d-flex justify-content-between align-items-center">
-                            <h3 class="text-light">Manage Inventory</h3>
+                        <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                            <h3 class="text-light">Deliveryman List</h3>
                             <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
-                                class="bi-plus-circle me-2"></i>Add New Inventory</button>
+                                class="bi-plus-circle me-2"></i>Add New Deliveryman</button>
                         </div>
                         <div class="card-body" id="show_all_employees">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
@@ -144,65 +156,16 @@
     </script> --}}
 
 
-    {{-- <script>
-        $(function() {
-            $(document).on('click', '.toggle-class', function(e) {
-                e.preventDefault();
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var id = $(this).data('id');
-
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '{{ route('inventory-status') }}',
-                    data: {'status': status, 'id': id},
-                    success: function(data){
-                    console.log(data.success)
-                    }
-                });
-            })
-        })
-    </script> --}}
-
-{{-- <script>
-    $(document).on('click', '.toggle-class', function(e) {
-        e.preventDefault();
-        var status =  $(this).prop('checked') ? 1 : 0;
-        var id = $(this).data('id');
-        $.ajax({
-            type: 'GET',
-            url: '{{ route('inventory-status') }}',
-            data: {
-                status: status,
-                id: id
-            },
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 200) {
-                Swal.fire(
-                    'Success',
-                    'Status Changed Successfully!',
-                    'success'
-                )}
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error(textStatus, errorThrown);
-            }
-        });
-    });
-</script> --}}
-
-
   <script>
     $(function() {
 
-      // add new Product ajax request
+      // add new DeliveryMan ajax request
       $("#add_employee_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
         $("#add_employee_btn").text('Adding...');
         $.ajax({
-          url: '{{ route('inventory-store') }}',
+          url: '{{ route('deliveryman-store') }}',
           method: 'post',
           data: fd,
           cache: false,
@@ -213,38 +176,40 @@
             if (response.status == 200) {
               Swal.fire(
                 'Added!',
-                'Product Added Successfully!',
+                'Deliveryman Added Successfully!',
                 'success'
               )
               fetchAllEmployees();
             }
-            $("#add_employee_btn").text('Add Product');
+            $("#add_employee_btn").text('Add Deliveryman');
             $("#add_employee_form")[0].reset();
             $("#addEmployeeModal").modal('hide');
 
             setTimeout(function () {
-                location.href = '{{route('inventory-list')}}';
+                location.href = '{{route('deliveryman-list')}}';
             }, 1000);
 
           }
         });
       });
 
-      // edit Product ajax request
+      // edit DeliveryMan ajax request
       $(document).on('click', '.editIcon', function(e) {
         e.preventDefault();
         let id = $(this).attr('id');
         $.ajax({
-          url: '{{ route('inventory-edit') }}',
+          url: '{{ route('deliveryman-edit') }}',
           method: 'get',
           data: {
             id: id,
             _token: '{{ csrf_token() }}'
           },
           success: function(response) {
-            $("#name").val(response.prod_name);
-            $("#stock").val(response.stock);
-            $("#category").val(response.category_id);
+            $("#f_name").val(response.f_name);
+            $("#l_name").val(response.l_name);
+            $("#phone").val(response.phone);
+            $("#email").val(response.email);
+            $("#password").val(response.password);
 
             $("#avatar").html(
                 `<img src="/storage/images/${response.image}" width="100" class="img-fluid img-thumbnail">`);
@@ -255,13 +220,13 @@
         });
       });
 
-      // update Product ajax request
+      // update DeliveryMan ajax request
       $("#edit_employee_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
         $("#edit_employee_btn").text('Updating...');
         $.ajax({
-          url: '{{ route('inventory-update') }}',
+          url: '{{ route('deliveryman-update') }}',
           method: 'post',
           data: fd,
           cache: false,
@@ -272,17 +237,17 @@
             if (response.status == 200) {
               Swal.fire(
                 'Updated!',
-                'Product Updated Successfully!',
+                'Deliveryman Updated Successfully!',
                 'success'
               )
               fetchAllEmployees();
             }
-            $("#edit_employee_btn").text('Update Product');
+            $("#edit_employee_btn").text('Update Deliveryman');
             $("#edit_employee_form")[0].reset();
             $("#editEmployeeModal").modal('hide');
 
             setTimeout(function () {
-                location.href = '{{route('inventory-list')}}';
+                location.href = '{{route('deliveryman-list')}}';
             }, 1000);
 
           }
@@ -305,7 +270,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              url: '{{ route('inventory-delete') }}',
+              url: '{{ route('deliveryman-delete') }}',
               method: 'delete',
               data: {
                 id: id,
@@ -341,7 +306,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              url: '{{ route('inventory-status') }}',
+              url: '{{ route('deliveryman-status') }}',
               data: {
                 status: status,
                 id: id
@@ -365,7 +330,7 @@
 
       function fetchAllEmployees() {
         $.ajax({
-          url: '{{ route('inventory-fetchAll') }}',
+          url: '{{ route('deliveryman-fetchAll') }}',
           method: 'get',
           success: function(response) {
             $("#show_all_employees").html(response);
@@ -379,4 +344,3 @@
   </script>
 
 @endpush
-
