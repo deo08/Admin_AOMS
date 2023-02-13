@@ -103,7 +103,7 @@
 
             {{-- Reports --}}
             <li class="{{ $elementActive == 'user' || $elementActive == 'sales-report' ? 'active' : '' }}">
-                <a data-toggle="collapse" aria-expanded="true" href="#orders">
+                <a data-toggle="collapse" aria-expanded="true" href="#report">
                     {{-- <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i> --}}
                     <p>
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -111,7 +111,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="orders">
+                <div class="collapse show" id="report">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'sales-report' ? 'active' : '' }}">
                             <a href="{{ route('sales-report-list') }}">

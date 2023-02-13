@@ -121,8 +121,8 @@
                         <div class="card shadow">
                         <div class="card-header bg-success d-flex justify-content-between align-items-center">
                             <h3 class="text-light">Customer List</h3>
-                            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
-                                class="bi-plus-circle me-2"></i>Add New Customer</button>
+                            {{-- <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
+                                class="bi-plus-circle me-2"></i>Add New Customer</button> --}}
                         </div>
                         <div class="card-body" id="show_all_employees">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
